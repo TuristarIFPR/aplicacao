@@ -4,29 +4,28 @@
 
 require_once(__DIR__ . "/enum/UsuarioPapel.php");
 
-class Usuario implements JsonSerializable {
+class Usuario {
 
     private ?int $id;
-    private ?string $nome;
-    private ?string $login;
+    private ?string $email;  
+    private ?string $nomeCompleto;
     private ?string $senha;
-    private ?string $papel;
-    private ?string $fotoPerfil;
+    private ?string $dataNasc;
+    private ?string $telefone;
+    private ?string $tipo;
+    
 
-    public function jsonSerialize(): array
-    {
-        return array(
-            "id" => $this->id,
-            "nome" => $this->nome,
-            "login" => $this->login
-        );
-    }
-
+    /**
+     * Get the value of id
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * Set the value of id
+     */
     public function setId(?int $id): self
     {
         $this->id = $id;
@@ -34,35 +33,53 @@ class Usuario implements JsonSerializable {
         return $this;
     }
 
-    public function getNome(): ?string
+    /**
+     * Get the value of email
+     */
+    public function getEmail(): ?string
     {
-        return $this->nome;
+        return $this->email;
     }
 
-    public function setNome(?string $nome): self
+    /**
+     * Set the value of email
+     */
+    public function setEmail(?string $email): self
     {
-        $this->nome = $nome;
+        $this->email = $email;
 
         return $this;
     }
 
-    public function getLogin(): ?string
+    /**
+     * Get the value of nomeCompleto
+     */
+    public function getNomeCompleto(): ?string
     {
-        return $this->login;
+        return $this->nomeCompleto;
     }
 
-    public function setLogin(?string $login): self
+    /**
+     * Set the value of nomeCompleto
+     */
+    public function setNomeCompleto(?string $nomeCompleto): self
     {
-        $this->login = $login;
+        $this->nomeCompleto = $nomeCompleto;
 
         return $this;
     }
 
+    /**
+     * Get the value of senha
+     */
     public function getSenha(): ?string
     {
         return $this->senha;
     }
 
+    /**
+     * Set the value of senha
+     */
     public function setSenha(?string $senha): self
     {
         $this->senha = $senha;
@@ -70,26 +87,56 @@ class Usuario implements JsonSerializable {
         return $this;
     }
 
-    public function getPapel(): ?string
+    /**
+     * Get the value of dataNasc
+     */
+    public function getDataNasc(): ?string
     {
-        return $this->papel;
+        return $this->dataNasc;
     }
 
-    public function setPapel(?string $papel): self
+    /**
+     * Set the value of dataNasc
+     */
+    public function setDataNasc(?string $dataNasc): self
     {
-        $this->papel = $papel;
+        $this->dataNasc = $dataNasc;
 
         return $this;
     }
 
-    public function getFotoPerfil(): ?string
+    /**
+     * Get the value of telefone
+     */
+    public function getTelefone(): ?string
     {
-        return $this->fotoPerfil;
+        return $this->telefone;
     }
 
-    public function setFotoPerfil(?string $fotoPerfil): self
+    /**
+     * Set the value of telefone
+     */
+    public function setTelefone(?string $telefone): self
     {
-        $this->fotoPerfil = $fotoPerfil;
+        $this->telefone = $telefone;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of tipo
+     */
+    public function getTipo(): ?string
+    {
+        return $this->tipo;
+    }
+
+    /**
+     * Set the value of tipo
+     */
+    public function setTipo(?string $tipo): self
+    {
+        $this->tipo = $tipo;
 
         return $this;
     }

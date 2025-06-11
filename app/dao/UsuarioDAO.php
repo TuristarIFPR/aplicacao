@@ -41,14 +41,14 @@ class UsuarioDAO {
     }
 
 
-    //Método para buscar um usuário por seu login e senha
-    public function findByLoginSenha(string $login, string $senha) {
+    //Método para buscar um usuário por seu email e senha
+    public function findByEmailSenha(string $email, string $senha) {
         $conn = Connection::getConn();
 
         $sql = "SELECT * FROM usuarios u" .
-               " WHERE BINARY u.login = ?";
+               " WHERE BINARY u.email = ?";
         $stm = $conn->prepare($sql);    
-        $stm->execute([$login]);
+        $stm->execute([$email]);
         $result = $stm->fetchAll();
 
         $usuarios = $this->mapUsuarios($result);
@@ -62,7 +62,7 @@ class UsuarioDAO {
         } elseif(count($usuarios) == 0)
             return null;
 
-        die("UsuarioDAO.findByLoginSenha()" . 
+        die("UsuarioDAO.findByEmailSenha()" . 
             " - Erro: mais de um usuário encontrado.");
     }
 
@@ -139,12 +139,13 @@ class UsuarioDAO {
         $usuarios = array();
         foreach ($result as $reg) {
             $usuario = new Usuario();
-            $usuario->setId($reg['id_usuario']);
-            $usuario->setNome($reg['nome_usuario']);
-            $usuario->setLogin($reg['login']);
+            $usuario->setId($reg['id']);
+            $usuario->setNomeCompleto($reg['nome_completo']);
+            $usuario->setEmail($reg['email']);
             $usuario->setSenha($reg['senha']);
-            $usuario->setPapel($reg['papel']);
-            $usuario->setFotoPerfil($reg['foto_perfil']);
+            $usuario->setDataNasc($reg['data_nasc']);
+            $usuario->setTelefone($reg['telefone']);
+            $usuario->setTipo($reg['tipo']);
             array_push($usuarios, $usuario);
         }
 
