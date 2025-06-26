@@ -17,7 +17,7 @@ class LoginController extends Controller {
         $this->handleAction();
     }
 
-    protected function email() {
+    protected function login() {
         $this->loadView("login/login.php", []);
     }
 

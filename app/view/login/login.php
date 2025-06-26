@@ -37,6 +37,13 @@ require_once(__DIR__ . "/../include/header.php");
             <?php include_once(__DIR__ . "/../include/msg.php") ?>
         </div>
     </div>
+
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-6">
+            <span>Não possui cadastro?</span><a href="./CadastroController.php?action=autocadastro">Clique aqui</a>
+        </div>
+
+    </div>
 </div>
 
 <?php  
