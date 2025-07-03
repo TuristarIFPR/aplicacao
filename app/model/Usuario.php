@@ -2,7 +2,7 @@
 #Nome do arquivo: Usuario.php
 #Objetivo: classe Model para Usuario
 
-require_once(__DIR__ . "/enum/UsuarioPapel.php");
+require_once(__DIR__ . "/enum/UsuarioTipo.php");
 
 class Usuario {
 
@@ -93,6 +93,15 @@ class Usuario {
     public function getDataNasc(): ?string
     {
         return $this->dataNasc;
+    }
+
+    public function getDataNascFormatada(): ?string
+    {
+        if($this->dataNasc) {
+            $date = date_create($this->dataNasc);
+            return date_format($date, "d/m/Y");
+        }
+        return "";
     }
 
     /**

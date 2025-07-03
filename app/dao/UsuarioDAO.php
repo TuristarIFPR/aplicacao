@@ -11,7 +11,7 @@ class UsuarioDAO {
     public function list() {
         $conn = Connection::getConn();
 
-        $sql = "SELECT * FROM usuarios u ORDER BY u.nome_usuario";
+        $sql = "SELECT * FROM usuarios u ORDER BY u.nome_completo";
         $stm = $conn->prepare($sql);    
         $stm->execute();
         $result = $stm->fetchAll();
@@ -70,12 +70,12 @@ class UsuarioDAO {
     public function insert(Usuario $usuario) {
         $conn = Connection::getConn();
 
-        $sql = "INSERT INTO usuarios (nome_usuario, login, senha, papel)" .
-               " VALUES (:nome, :login, :senha, :papel)";
+        $sql = "INSERT INTO usuarios (email, nomeCompleto, senha, dataNasc, telefone, tipo)" .
+               " VALUES (:papel)"; //(mudar)
         
         $senhaCripto = password_hash($usuario->getSenha(), PASSWORD_DEFAULT);
 
-        $stm = $conn->prepare($sql);
+        $stm = $conn->prepare($sql); //mudar
         $stm->bindValue("nome", $usuario->getNome());
         $stm->bindValue("login", $usuario->getLogin());
         $stm->bindValue("senha", $senhaCripto);

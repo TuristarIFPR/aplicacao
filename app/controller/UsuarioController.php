@@ -4,7 +4,7 @@ require_once(__DIR__ . "/Controller.php");
 require_once(__DIR__ . "/../dao/UsuarioDAO.php");
 require_once(__DIR__ . "/../service/UsuarioService.php");
 require_once(__DIR__ . "/../model/Usuario.php");
-require_once(__DIR__ . "/../model/enum/UsuarioPapel.php");
+require_once(__DIR__ . "/../model/enum/UsuarioTipo.php");
 
 class UsuarioController extends Controller {
 
@@ -50,7 +50,7 @@ class UsuarioController extends Controller {
             $this->list("Usuário não encontrado!");
     }
 
-    protected function save() {
+    protected function save() { //mudar
         //Capturar os dados do formulário
         $id = $_POST['id'];
         $nome = trim($_POST['nome']) != "" ? trim($_POST['nome']) : NULL;

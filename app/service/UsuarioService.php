@@ -9,7 +9,7 @@ class UsuarioService {
         $erros = array();
 
         //Validar campos vazios
-        if(! $usuario->getNome())
+        if(! $usuario->getNome()) //mudar
             array_push($erros, "O campo [Nome] é obrigatório.");
 
         if(! $usuario->getLogin())

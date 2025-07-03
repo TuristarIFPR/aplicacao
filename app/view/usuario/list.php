@@ -27,9 +27,11 @@ require_once(__DIR__ . "/../include/menu.php");
                 <thead>
                     <tr>
                         <th>ID</th>
+                        <th>Email</th>
                         <th>Nome</th>
-                        <th>Login</th>
-                        <th>Papel</th>
+                        <th>Nascimento</th>
+                        <th>Telefone</th>
+                        <th>Tipo</th>
                         <th>Alterar</th>
                         <th>Excluir</th>
                     </tr>
@@ -38,9 +40,11 @@ require_once(__DIR__ . "/../include/menu.php");
                     <?php foreach($dados['lista'] as $usu): ?>
                         <tr>
                             <td><?php echo $usu->getId(); ?></td>
-                            <td><?= $usu->getNome(); ?></td>
-                            <td><?= $usu->getLogin(); ?></td>
-                            <td><?= $usu->getPapel(); ?></td>
+                            <td><?= $usu->getEmail(); ?></td>
+                            <td><?= $usu->getNomeCompleto(); ?></td>
+                            <td><?= $usu->getDataNascFormatada(); ?></td>
+                            <td><?= $usu->getTelefone(); ?></td>
+                            <td><?= $usu->getTipo(); ?></td>
                             <td><a class="btn btn-primary" 
                                 href="<?= BASEURL ?>/controller/UsuarioController.php?action=edit&id=<?= $usu->getId() ?>">
                                 Alterar</a> 

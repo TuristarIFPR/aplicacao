@@ -1,6 +1,6 @@
 <?php
 #Nome do arquivo: UsuarioPapel.php
-#Objetivo: classe Enum para os papeis de permissões do model de Usuario
+#Objetivo: classe Enum para os tipos de permissões do model de Usuario
 
 class UsuarioPapel {
 
