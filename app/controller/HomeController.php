@@ -8,6 +8,7 @@ class HomeController extends Controller {
     private UsuarioDAO $usuarioDAO;
 
     public function __construct() {
+        
         //Verificar se o usuário está logado
         if(! $this->usuarioEstaLogado())
             return;

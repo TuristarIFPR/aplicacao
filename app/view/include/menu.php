@@ -32,6 +32,20 @@ if (isset($_SESSION[SESSAO_USUARIO_NOME]))
                 </div>
             </li>
 
+            <!-- TODO: revisar este menu  -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                    data-bs-toggle="dropdown">
+                    Cidades
+                </a>
+
+                <div class="dropdown-menu">
+                    <a class="dropdown-item"
+                        href="<?= BASEURL . '/controller/CidadeController.php?action=list' ?>">Listar</a>
+                    <a class="dropdown-item" href="#">Cadastrar</a>
+                </div>
+            </li>
+
         </ul>
 
         <ul class="navbar-nav ms-auto mr-3">

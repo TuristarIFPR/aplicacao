@@ -22,14 +22,28 @@ require_once(__DIR__ . "/../include/menu.php");
                     <label class="form-label" for="txtNome">Nome:</label>
                     <input class="form-control" type="text" id="txtNome" name="nome" 
                         maxlength="70" placeholder="Informe o nome"
-                        value="<?php echo (isset($dados["usuario"]) ? $dados["usuario"]->getNome() : ''); ?>" />
+                        value="<?php echo (isset($dados["usuario"]) ? $dados["usuario"]->getNomeCompleto() : ''); ?>" />
                 </div>
                 
                 <div class="mb-3">
-                    <label class="form-label" for="txtLogin">Login:</label>
-                    <input class="form-control" type="text" id="txtLogin" name="login" 
-                        maxlength="15" placeholder="Informe o email"
-                        value="<?php echo (isset($dados["usuario"]) ? $dados["usuario"]->getLogin() : ''); ?>"/>
+                    <label class="form-label" for="txtEmail">Email:</label>
+                    <input class="form-control" type="text" id="txtEmail" name="email" 
+                        maxlength="100" placeholder="Informe o email"
+                        value="<?php echo (isset($dados["usuario"]) ? $dados["usuario"]->getEmail() : ''); ?>"/>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="txtData">Data de nascimento:</label>
+                    <input class="form-control" type="date" id="txtData" name="dataNasc" 
+                        maxlength="100" placeholder="Informe a data de nascimento"
+                        value="<?php echo (isset($dados["usuario"]) ? $dados["usuario"]->getDataNasc() : ''); ?>"/>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="txtTelefone">Telefone:</label>
+                    <input class="form-control" type="text" id="txtTelefone" name="telefone" 
+                        maxlength="100" placeholder="Informe o telefone"
+                        value="<?php echo (isset($dados["usuario"]) ? $dados["usuario"]->getTelefone() : ''); ?>"/>
                 </div>
 
                 <div class="mb-3">
@@ -53,7 +67,7 @@ require_once(__DIR__ . "/../include/menu.php");
                         <?php foreach($dados["papeis"] as $papel): ?>
                             <option value="<?= $papel ?>" 
                                 <?php 
-                                    if(isset($dados["usuario"]) && $dados["usuario"]->getPapel() == $papel) 
+                                    if(isset($dados["usuario"]) && $dados["usuario"]->getTipo() == $papel) 
                                         echo "selected";
                                 ?>    
                             >

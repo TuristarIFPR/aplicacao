@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 
 
 CREATE TABLE IF NOT EXISTS `cidades` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL,
   `estado_sigla` VARCHAR(2) NOT NULL,
   `estado_nome` VARCHAR(45) NULL,

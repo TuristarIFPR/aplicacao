@@ -38,6 +38,7 @@ class UsuarioController extends Controller {
     protected function edit() {
         //Busca o usuário na base pelo ID    
         $usuario = $this->findUsuarioById();
+
         if($usuario) {
             $dados['id'] = $usuario->getId();
             $usuario->setSenha("");
@@ -46,26 +47,38 @@ class UsuarioController extends Controller {
             $dados['papeis'] = UsuarioPapel::getAllAsArray();
             
             $this->loadView("usuario/form.php", $dados);
-        } else
+        } else {
             $this->list("Usuário não encontrado!");
+        }
     }
 
-    protected function save() { //mudar
+    protected function save() {
         //Capturar os dados do formulário
-        $id = $_POST['id'];
-        $nome = trim($_POST['nome']) != "" ? trim($_POST['nome']) : NULL;
-        $login = trim($_POST['login']) != "" ? trim($_POST['login']) : NULL;
-        $senha = trim($_POST['senha']) != "" ? trim($_POST['senha']) : NULL;
-        $confSenha = trim($_POST['conf_senha']) != "" ? trim($_POST['conf_senha']) : NULL;
-        $papel = $_POST['papel'];
+        $id = $_POST['id'] ?? 0;
+
+        $nome = trim((string)($_POST['nome'] ?? '')) != "" ? trim((string)$_POST['nome']) : NULL;
+
+        $email = trim((string)($_POST['email'] ?? '')) != "" ? trim((string)$_POST['email']) : NULL;
+        
+        $dataNasc = trim((string)($_POST['dataNasc'] ?? '')) != "" ? trim((string)$_POST['dataNasc']) : NULL;
+        
+        $telefone = trim((string)($_POST['telefone'] ?? '')) != "" ? trim((string)$_POST['telefone']) : NULL;
+
+        $senha = trim((string)($_POST['senha'] ?? '')) != "" ? trim((string)$_POST['senha']) : NULL;
+
+        $confSenha = trim((string)($_POST['conf_senha'] ?? '')) != "" ? trim((string)$_POST['conf_senha']) : NULL;
+
+        $papel = $_POST['papel'] ?? NULL;
 
         //Criar o objeto Usuario
         $usuario = new Usuario();
         $usuario->setId($id);
-        $usuario->setNome($nome);
-        $usuario->setLogin($login);
+        $usuario->setNomeCompleto($nome);
+        $usuario->setEmail($email);
+        $usuario->setDataNasc($dataNasc);
+        $usuario->setTelefone($telefone);
         $usuario->setSenha($senha);
-        $usuario->setPapel($papel);
+        $usuario->setTipo($papel);
 
         //Validar os dados (camada service)
         $erros = $this->usuarioService->validarDados($usuario, $confSenha);
@@ -82,7 +95,7 @@ class UsuarioController extends Controller {
             } catch(PDOException $e) {
                 //Iserir erro no array
                 array_push($erros, "Erro ao gravar no banco de dados!");
-                //array_push($erros, $e->getMessage());
+                array_push($erros, $e->getMessage());
             }
         } 
 
@@ -131,10 +144,7 @@ class UsuarioController extends Controller {
         return $this->usuarioDao->findById($id);
     }
 
-    
-
 }
-
 
 #Criar objeto da classe para assim executar o construtor
 new UsuarioController();

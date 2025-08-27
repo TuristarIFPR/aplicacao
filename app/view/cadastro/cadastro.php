@@ -8,17 +8,17 @@ require_once(__DIR__ . "/../include/header.php");
 <div class="container">
     <div class="row" style="margin-top: 20px;">
         <div class="col-6">
-            <div class="alert alert-info">
+            <div class="">
                 <h4>Informe os dados para efutuar o cadastro:</h4>
                 <br>
 
                 <!-- Formulário de cadastro -->
-                <form id="frmLogin" action="./CadastroController.php?action=logon" method="POST" >
+                <form id="frmLogin" action="./CadastroController.php?action=save" method="POST" >
                     <div class="mb-3">
                         <label class="form-label" for="txtEmail">Email:</label>
                         <input type="text" class="form-control" name="email" id="txtEmail"
-                            maxlength="45" placeholder="Informe o email"
-                            value="<?php echo isset($dados['email']) ? $dados['email'] : '' ?>" />        
+                            maxlength="200" placeholder="Informe o email"
+                            value="<?php echo isset($dados['usuario']) ? $dados['usuario']->getEmail() : '' ?>" />        
                     </div>
 
                     <div class="mb-3">
@@ -55,7 +55,7 @@ require_once(__DIR__ . "/../include/header.php");
         </div>
 
         <div class="col-6">
-            <?php include_once(__DIR__ . "/../login/login.php") ?>
+            <?php include_once(__DIR__ . "/../include/msg.php") ?>
         </div>
     </div>
 </div>

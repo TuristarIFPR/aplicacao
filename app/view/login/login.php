@@ -17,7 +17,7 @@ require_once(__DIR__ . "/../include/header.php");
                     <div class="mb-3">
                         <label class="form-label" for="txtEmail">Email:</label>
                         <input type="text" class="form-control" name="email" id="txtEmail"
-                            maxlength="45" placeholder="Informe o email"
+                            maxlength="100" placeholder="Informe o email"
                             value="<?php echo isset($dados['email']) ? $dados['email'] : '' ?>" />        
                     </div>
 
@@ -40,7 +40,7 @@ require_once(__DIR__ . "/../include/header.php");
 
     <div class="row" style="margin-top: 20px;">
         <div class="col-6">
-            <span>Não possui cadastro?</span><a href="./CadastroController.php?action=autocadastro">Clique aqui</a>
+            <span>Não possui cadastro?</span><a href="./CadastroController.php?action=cadastro">Clique aqui</a>
         </div>
 
     </div>
