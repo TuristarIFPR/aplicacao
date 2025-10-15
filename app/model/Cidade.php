@@ -1,8 +1,6 @@
 <?php 
-#Nome do arquivo: Usuario.php
-#Objetivo: classe Model para Usuario
-
-require_once(__DIR__ . "/enum/UsuarioTipo.php");
+#Nome do arquivo: Cidade.php
+#Objetivo: classe Model para Cidade
 
 class Cidade {
 

@@ -22,17 +22,17 @@ if (isset($_SESSION[SESSAO_USUARIO_NOME]))
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
                     data-bs-toggle="dropdown">
-                    Cadastros
+                    Usuarios
                 </a>
 
                 <div class="dropdown-menu">
                     <a class="dropdown-item"
-                        href="<?= BASEURL . '/controller/UsuarioController.php?action=list' ?>">Usuários</a>
-                    <a class="dropdown-item" href="#">Outro cadastro</a>
+                        href="<?= BASEURL . '/controller/UsuarioController.php?action=list' ?>">Listagem</a>
+                    <a class="dropdown-item"
+                        href="<?= BASEURL . '/controller/UsuarioController.php?action=create' ?>">Cadastrar</a>
                 </div>
             </li>
-
-            <!-- TODO: revisar este menu  -->
+            
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
                     data-bs-toggle="dropdown">
@@ -41,8 +41,23 @@ if (isset($_SESSION[SESSAO_USUARIO_NOME]))
 
                 <div class="dropdown-menu">
                     <a class="dropdown-item"
-                        href="<?= BASEURL . '/controller/CidadeController.php?action=list' ?>">Listar</a>
-                    <a class="dropdown-item" href="#">Cadastrar</a>
+                        href="<?= BASEURL . '/controller/CidadeController.php?action=list' ?>">Listagem</a>
+                    <a class="dropdown-item"                         
+                    href="<?= BASEURL . '/controller/CidadeController.php?action=create' ?>">Cadastrar</a>
+                </div>
+            </li>
+
+             <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                    data-bs-toggle="dropdown">
+                    Pontos Turistico
+                </a>
+
+                <div class="dropdown-menu">
+                    <a class="dropdown-item"
+                        href="<?= BASEURL . '/controller/PontoTuristicoController.php?action=list' ?>">Listagem</a>
+                    <a class="dropdown-item"                         
+                    href="<?= BASEURL . '/controller/PontoTuristicoController.php?action=create' ?>">Cadastrar</a>
                 </div>
             </li>
 
@@ -55,6 +70,7 @@ if (isset($_SESSION[SESSAO_USUARIO_NOME]))
                     <?= $nome ?>
                 </a>
 
+                <!-- TODO: Fazer a página de perfil -->
                 <div class="dropdown-menu">
                     <a class="dropdown-item"
                         href="<?= BASEURL . '/controller/PerfilController.php?action=view' ?>">Perfil</a>

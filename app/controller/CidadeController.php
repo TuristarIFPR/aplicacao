@@ -17,6 +17,7 @@ class CidadeController extends Controller {
             return;
 
         //TODO - Verificar se o usuário logado é ADMIN
+        
 
         $this->cidadeDAO = new CidadeDAO();
         $this->cidadeService = new CidadeService();
@@ -39,7 +40,7 @@ class CidadeController extends Controller {
     }
 
     protected function edit() {
-        //Busca o usuário na base pelo ID    
+        //Busca o cidade na base pelo ID    
         $cidade = $this->findCidadeById();
 
         if($cidade) {

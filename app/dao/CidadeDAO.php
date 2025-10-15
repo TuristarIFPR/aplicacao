@@ -4,6 +4,8 @@
 
 include_once(__DIR__ . "/../connection/Connection.php");
 include_once(__DIR__ . "/../model/Usuario.php");
+include_once(__DIR__ . "/../model/Cidade.php");
+
 
 class CidadeDAO {
 
@@ -19,7 +21,7 @@ class CidadeDAO {
         return $this->mapCidades($result);
     }
 
-    //Método para buscar um usuário por seu ID
+    //Método para buscar uma cidade por seu ID
     public function findById(int $id) {
         $conn = Connection::getConn();
 
@@ -41,7 +43,7 @@ class CidadeDAO {
     }
 
 
-    //Método para inserir um Usuario
+    //Método para inserir uma cidade
     public function insert(Cidade $cidade) {
         $conn = Connection::getConn();
 
@@ -71,7 +73,7 @@ class CidadeDAO {
         $stm->execute();
     }
 
-    //Método para excluir um Usuario pelo seu ID
+    //Método para excluir uma cidade pelo seu ID
     public function deleteById(int $id) {
         $conn = Connection::getConn();
 

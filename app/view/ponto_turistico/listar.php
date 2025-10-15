@@ -1,13 +1,10 @@
 <?php 
 
-#Nome do arquivo: cidade/list.php
-#Objetivo: interface para listagem das cidade do sistema
-
 require_once(__DIR__ . "/../include/header.php");
 require_once(__DIR__ . "/../include/menu.php");
 ?>
 
-<h3 class="text-center">Cidades</h3>
+<h3 class="text-center">Pontos Turisticos</h3>
 
 <div class="container">
     <div class="row">
@@ -18,31 +15,30 @@ require_once(__DIR__ . "/../include/menu.php");
 
     <div class="row" style="margin-top: 10px;">
         <div class="col-12">
-            <table id="tabCidades" class='table table-striped table-bordered'>
+            <table id="tabpontos_turisticos" class='table table-striped table-bordered'>
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Nome</th>
-                        <th>Estado Sigla</th>
-                        <th>Estado Nome</th>
-                        <th></th>
+                        <th>Endereco</th>
+                        <th>Descricao</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach($dados['cidades'] as $cid): ?>
+                    <?php foreach($dados['pontos'] as $pont): ?>
                         <tr>
-                            <td><?php echo $cid->getId(); ?></td>
-                            <td><?= $cid->getNome(); ?></td>
-                            <td><?= $cid->getEstadoSigla(); ?></td>
-                            <td><?= $cid->getEstadoNome(); ?></td>
+                            <td><?php echo $pont->getId(); ?></td>
+                            <td><?= $pont->getNome(); ?></td>
+                            <td><?= $pont->getEndereco(); ?></td>
+                            <td><?= $pont->getDescricao(); ?></td>
                             <td><a class="btn btn-primary" 
-                                href="<?= BASEURL ?>/controller/CidadeController.php?action=edit&id=<?= $cid->getId() ?>">
+                                href="<?= BASEURL ?>/controller/PontoTuristicoController.php?action=edit&id=<?= $pont->getId() ?>">
                                 Alterar</a> 
                             </td>
                             <td><a class="btn btn-danger" 
-                                onclick="return confirm('Confirma a exclusão da cidade?');"
-                                href="<?= BASEURL ?>/controller/CidadeController.php?action=delete&id=<?= $cid->getId() ?>">
+                                onclick="return confirm('Confirma a exclusão do ponto turistico?');"
+                                href="<?= BASEURL ?>/controller/PontoTuristicoController.php?action=delete&id=<?= $pont->getId() ?>">
                                 Excluir</a> 
                             </td>
                         </tr>
