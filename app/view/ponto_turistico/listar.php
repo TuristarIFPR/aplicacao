@@ -28,6 +28,7 @@ require_once(__DIR__ . "/../include/menu.php");
                     </tr>
                 </thead>
                 <tbody>
+                    <!-- lista de pontos turisticos -->
                     <?php foreach($dados['pontos'] as $pont): ?>
                         <tr>
                             <td><?php echo $pont->getId(); ?></td>

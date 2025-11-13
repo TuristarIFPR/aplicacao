@@ -99,7 +99,6 @@ class PontoDAO {
             $ponto->setImagem($reg['imagem']);
             $ponto->setDescricao($reg['descricao']);
             $ponto->setEndereco($reg['endereco']);
-            // imagem
 
             $ponto->setCidade($cidadeDAO->findById($reg['cidade_id']));
 

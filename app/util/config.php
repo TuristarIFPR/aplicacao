@@ -14,6 +14,8 @@ define('DB_PASSWORD', 'bancodedados');
 
 //Deve ter o nome da pasta do projeto no servidor APACHE
 define('BASEURL', '/turistar/aplicacao/app');
+define('BASE_URL_VISITANTE', '/turistar/aplicacao/app/view/area_visitante');
+
 
 //Nome do sistema
 define('APP_NAME', 'Template do Projeto Integrador');
@@ -25,7 +27,7 @@ define('LOGIN_PAGE', BASEURL . '/controller/LoginController.php?action=login');
 define('LOGOUT_PAGE', BASEURL . '/controller/LoginController.php?action=logout');
 
 //Página home do sistema
-define('HOME_PAGE', BASEURL . '/controller/HomeController.php?action=home');
+define('HOME_PAGE', BASEURL . '/controller/SiteController.php?action=home');
 
 //Sessão do usuário
 define('SESSAO_USUARIO_ID', "usuarioLogadoId");

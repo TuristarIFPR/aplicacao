@@ -22,26 +22,25 @@ require_once(__DIR__ . "/../include/menu.php");
                         <th>Titulo</th>
                         <th>Texto</th>
                         <th>Data</th>
-                        <th></th>
+                        <th>#</th>
+                        <th>#</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach($dados['pontos'] as $pont): ?>
+                    <?php foreach($dados['noticias'] as $noti): ?>
                         <tr>
-                            <td><?php echo $pont->getId(); ?></td>
-                            <td><?= $pont->getTitulo(); ?></td>
-                            <td><?= $pont->getTexto(); ?></td>
-                            <td><?= $pont->getData(); ?></td>
+                            <td><?php echo $noti->getId(); ?></td>
+                            <td><?= $noti->getTitulo(); ?></td>
+                            <td><?= $noti->getTexto(); ?></td>
+                            <td><?= $noti->getData(); ?></td>
                             
-                       <!-- imagem -->
-
                             <td><a class="btn btn-primary" 
-                                href="<?= BASEURL ?>/controller/NoticiasController.php?action=edit&id=<?= $pont->getId() ?>">
+                                href="<?= BASEURL ?>/controller/NoticiasController.php?action=edit&id=<?= $noti->getId() ?>">
                                 Alterar</a> 
                             </td>
                             <td><a class="btn btn-danger" 
                                 onclick="return confirm('Confirma a exclusão da  noticia?');"
-                                href="<?= BASEURL ?>/controller/NoticiasController.php?action=delete&id=<?= $pont->getId() ?>">
+                                href="<?= BASEURL ?>/controller/NoticiasController.php?action=delete&id=<?= $noti->getId() ?>">
                                 Excluir</a> 
                             </td>
                         </tr>

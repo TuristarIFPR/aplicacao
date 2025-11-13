@@ -31,8 +31,6 @@ class Controller {
 
     protected function loadView(string $path, array $dados = [], string $msgErro = "", string $msgSucesso = "") {
         
-
-
         $caminho = __DIR__ . "/../view/" . $path;
         //echo $caminho;
         if(file_exists($caminho)) {

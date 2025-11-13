@@ -77,12 +77,10 @@ class PontoTuristicoController extends Controller
 
         $cidadeId = trim((int)($_POST['cidadeId'] ?? '')) != "" ? trim((int)$_POST['cidadeId']) : NULL;
 
-
         $endereco = trim((string)($_POST['endereco'] ?? '')) != "" ? trim((string)$_POST['endereco']) : NULL;
 
         $descricao = trim((string)($_POST['descricao'] ?? '')) != "" ? trim((string)$_POST['descricao']) : NULL;
 
-        //imagem
 
         //Criar o objeto Ponto turistico
         $ponto = new PontoTuristico();

@@ -36,9 +36,7 @@ require_once(__DIR__ . "/../include/menu.php");
                         value="<?php echo (isset($dados["noticia"]) ? $dados["noticia"]->getData() : ''); ?>"/>
                 </div>
 
-                <!-- Imagem -->
-
-
+ 
                 <input type="hidden" id="hddId" name="id" 
                     value="<?= $dados['id']; ?>" />
 

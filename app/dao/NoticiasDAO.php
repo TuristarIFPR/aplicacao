@@ -8,13 +8,13 @@ require_once(__DIR__ . "/NoticiasDAO.php");
 
 class NoticiasDAO {
 
-    private PontoDAO $pontoDAO;
+  private PontoDAO $pontoDAO;
 
     //Método para listar as noticias a partir da base de dados
     public function list() {
         $conn = Connection::getConn();
 
-        $sql = "SELECT * FROM pontos_turisticos u ORDER BY u.nome";
+        $sql = "SELECT * FROM noticias u ORDER BY u.titulo";
         $stm = $conn->prepare($sql);    
         $stm->execute();
         $result = $stm->fetchAll();
@@ -26,8 +26,7 @@ class NoticiasDAO {
     public function findById(int $id) {
         $conn = Connection::getConn();
 
-        $sql = "SELECT * FROM noticias noticias" .
-               " WHERE pontos.id = ?";
+        $sql = "SELECT * FROM noticias n WHERE n.id = ?";
         $stm = $conn->prepare($sql);    
         $stm->execute([$id]);
         $result = $stm->fetchAll();
@@ -46,13 +45,14 @@ class NoticiasDAO {
     public function insert(Noticias $noticia) {
         $conn = Connection::getConn();
 
-        $sql = "INSERT INTO noticias (titulo, texto, data)" .
-               " VALUES (:titulo, :texto, :data)"; 
+        $sql = "INSERT INTO noticias (titulo, texto, data, pontos_turisticos_id)" .
+               " VALUES (:titulo, :texto, :data, :pontos_turisticos_id)"; 
         
         $stm = $conn->prepare($sql); 
         $stm->bindValue("titulo", $noticia->getTitulo());
         $stm->bindValue("texto", $noticia->getTexto());
         $stm->bindValue("data", $noticia->getData());
+        $stm->bindValue("pontos_turisticos_id", $noticia->getPonto_turistico()->getId());
         $stm->execute();
     }
 
@@ -96,7 +96,7 @@ class NoticiasDAO {
             $noticia->setTexto($reg['texto']);
             $noticia->setData($reg['data']);
          
-            $noticia->setPonto_turistico($pontoDAO->findById($reg['cidade_id']));
+            $noticia->setPonto_turistico($pontoDAO->findById($reg['pontos_turisticos_id']));
 
             array_push($noticias, $noticia);
         }
