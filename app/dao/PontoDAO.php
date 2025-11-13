@@ -46,13 +46,16 @@ class PontoDAO {
     public function insert(PontoTuristico $ponto) {
         $conn = Connection::getConn();
 
-        $sql = "INSERT INTO pontos_turisticos (nome, endereco, descricao)" .
-               " VALUES (:nome, :endereco, :descricao)"; 
+        $sql = "INSERT INTO pontos_turisticos (nome, endereco, cidade_id, descricao, imagem)" .
+               " VALUES (:nome, :endereco, :cidade_id, :descricao, :imagem)"; 
         
         $stm = $conn->prepare($sql); 
         $stm->bindValue("nome", $ponto->getNome());
+        $stm->bindValue("cidade_id", $ponto->getCidade()->getId());
         $stm->bindValue("endereco", $ponto->getendereco());
         $stm->bindValue("descricao", $ponto->getdescricao());
+        $stm->bindValue("imagem", $ponto->getImagem());
+
         $stm->execute();
     }
 
@@ -93,8 +96,10 @@ class PontoDAO {
             $ponto = new PontoTuristico();
             $ponto->setId($reg['id']);
             $ponto->setNome($reg['nome']);
+            $ponto->setImagem($reg['imagem']);
             $ponto->setDescricao($reg['descricao']);
             $ponto->setEndereco($reg['endereco']);
+            // imagem
 
             $ponto->setCidade($cidadeDAO->findById($reg['cidade_id']));
 

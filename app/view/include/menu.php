@@ -61,6 +61,20 @@ if (isset($_SESSION[SESSAO_USUARIO_NOME]))
                 </div>
             </li>
 
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                    data-bs-toggle="dropdown">
+                    Noticia
+                </a>
+
+                <div class="dropdown-menu">
+                    <a class="dropdown-item"
+                        href="<?= BASEURL . '/controller/NoticiasController.php?action=list' ?>">Listagem</a>
+                    <a class="dropdown-item"
+                        href="<?= BASEURL . '/controller/NoticiasController.php?action=create' ?>">Cadastrar</a>
+                </div>
+            </li>
+
         </ul>
 
         <ul class="navbar-nav ms-auto mr-3">
@@ -69,8 +83,7 @@ if (isset($_SESSION[SESSAO_USUARIO_NOME]))
                     data-bs-toggle="dropdown">
                     <?= $nome ?>
                 </a>
-
-                <!-- TODO: Fazer a página de perfil -->
+                
                 <div class="dropdown-menu">
                     <a class="dropdown-item"
                         href="<?= BASEURL . '/controller/PerfilController.php?action=view' ?>">Perfil</a>

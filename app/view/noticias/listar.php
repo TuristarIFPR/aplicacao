@@ -4,7 +4,7 @@ require_once(__DIR__ . "/../include/header.php");
 require_once(__DIR__ . "/../include/menu.php");
 ?>
 
-<h3 class="text-center">Pontos Turisticos</h3>
+<h3 class="text-center">Noticias</h3>
 
 <div class="container">
     <div class="row">
@@ -15,15 +15,13 @@ require_once(__DIR__ . "/../include/menu.php");
 
     <div class="row" style="margin-top: 10px;">
         <div class="col-12">
-            <table id="tabpontos_turisticos" class='table table-striped table-bordered'>
+            <table id="tabnoticias" class='table table-striped table-bordered'>
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Nome</th>
-                     <th>Imagem</th>
-
-                        <th>Endereco</th>
-                        <th>Descricao</th>
+                        <th>Titulo</th>
+                        <th>Texto</th>
+                        <th>Data</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -31,20 +29,19 @@ require_once(__DIR__ . "/../include/menu.php");
                     <?php foreach($dados['pontos'] as $pont): ?>
                         <tr>
                             <td><?php echo $pont->getId(); ?></td>
-                            <td><?= $pont->getNome(); ?></td>
-                            <td><img src="<?= BASEURL. "/../../publica/". $pont->getImagem(); ?>" width="100" alt=""></td>
-                            <td><?= $pont->getEndereco(); ?></td>
-                            <td><?= $pont->getDescricao(); ?></td>
+                            <td><?= $pont->getTitulo(); ?></td>
+                            <td><?= $pont->getTexto(); ?></td>
+                            <td><?= $pont->getData(); ?></td>
                             
                        <!-- imagem -->
 
                             <td><a class="btn btn-primary" 
-                                href="<?= BASEURL ?>/controller/PontoTuristicoController.php?action=edit&id=<?= $pont->getId() ?>">
+                                href="<?= BASEURL ?>/controller/NoticiasController.php?action=edit&id=<?= $pont->getId() ?>">
                                 Alterar</a> 
                             </td>
                             <td><a class="btn btn-danger" 
-                                onclick="return confirm('Confirma a exclusão do ponto turistico?');"
-                                href="<?= BASEURL ?>/controller/PontoTuristicoController.php?action=delete&id=<?= $pont->getId() ?>">
+                                onclick="return confirm('Confirma a exclusão da  noticia?');"
+                                href="<?= BASEURL ?>/controller/NoticiasController.php?action=delete&id=<?= $pont->getId() ?>">
                                 Excluir</a> 
                             </td>
                         </tr>

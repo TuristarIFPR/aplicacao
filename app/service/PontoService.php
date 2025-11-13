@@ -18,6 +18,8 @@ class PontoService {
         if(! $ponto->getDescricao())
             array_push($erros, "O campo [Descricao] é obrigatório.");
 
+        //imagem
+
         return $erros;
     }
 
