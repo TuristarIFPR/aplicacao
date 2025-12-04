@@ -7,139 +7,105 @@ require_once(__DIR__ . "/../model/Noticias.php");
 require_once(__DIR__ . "/../dao/PontoDAO.php");
 require_once(__DIR__ . "/../model/PontoTuristico.php");
 
-class NoticiasController extends Controller
-{
+class NoticiasController extends Controller {
 
     private NoticiasDAO $noticiasDAO;
     private NoticiasService $noticiasService;
     private PontoDAO $pontoDAO;
 
-    public function __construct()
-    {
+    public function __construct() {
 
-        //Verificar se o usuário está logado (?)
-        if (! $this->usuarioEstaLogado())
+        if (!$this->usuarioEstaLogado())
             return;
-
-        //TODO - Verificar se o usuário logado é ADMIN
-
 
         $this->noticiasDAO = new NoticiasDAO();
         $this->noticiasService = new NoticiasService();
         $this->pontoDAO = new PontoDAO();
 
-        //Tratar a ação solicitada no parâmetro "action"
         $this->handleAction();
     }
 
-    protected function list()
-    {
-
+    protected function list() {
         $dados['noticias'] = $this->noticiasDAO->list();
-
         $this->loadView("noticias/listar.php", $dados);
     }
 
-    protected function create()
-    {
-
+    protected function create() {
         $dados['id'] = 0;
         $dados['pontos'] = $this->pontoDAO->list();
         $this->loadView("noticias/form.php", $dados);
-
     }
 
-    protected function edit()
-    {
+    protected function edit() {
 
         $id = $_GET["id"];
-        //Busca a noticia na base pelo ID    
-        $noticias = $this->noticiasDAO->findById($id);
+        $noticia = $this->noticiasDAO->findById($id);
 
-        if ($noticias) {
-            $dados['id'] = $noticias->getId();
-            $dados["noticias"] = $noticias;
+        if ($noticia) {
+            $dados['id'] = $noticia->getId();
+            $dados["noticia"] = $noticia;
             $dados['pontos'] = $this->pontoDAO->list();
 
             $this->loadView("noticias/form.php", $dados);
         } else {
-            $this->list("Noticias não encontrada!");
+            $this->list("Notícia não encontrada!");
         }
     }
 
-    protected function save()
-    {
-        //Capturar os dados do formulário
+    protected function save() {
+
         $id = $_POST['id'] ?? 0;
+        $titulo = $_POST['titulo'] ?? null;
+        $texto = $_POST['texto'] ?? null;
+        $data = $_POST['data'] ?? null;
+        $pontoId = $_POST['pontoId'] ?? null;
 
-        $titulo = trim((string)($_POST['titulo'] ?? '')) != "" ? trim((string)$_POST['titulo']) : NULL;
+        $noticia = new Noticias();
+        $noticia->setId($id);
+        $noticia->setTitulo($titulo);
+        $noticia->setTexto($texto);
+        $noticia->setData($data);
+        $noticia->setPonto_turistico($this->pontoDAO->findById($pontoId));
 
-        //$pontoId = trim((int)($_POST['pontoId'] ?? '')) != "" ? trim((int)$_POST['pontoId']) : NULL;
+        $erros = $this->noticiasService->validarDados($noticia);
 
-        $texto = trim((string)($_POST['texto'] ?? '')) != "" ? trim((string)$_POST['texto']) : NULL;
-
-        $data = trim((string)($_POST['data'] ?? '')) != "" ? trim((string)$_POST['data']) : NULL;
-
-
-        //Criar o objeto Ponto turistico
-        $noticias = new Noticias();
-        $noticias->setId($id);
-        $noticias->setPonto_turistico($this->pontoDAO->findById(21));
-        $noticias->setTitulo($titulo);
-        $noticias->setTexto($texto);
-        $noticias->setData($data);
-
-
-        //Validar os dados (camada service)
-        $erros = $this->noticiasService->validarDados($noticias);
-        if (! $erros) {
-            //Inserir no Base de Dados
+        if (!$erros) {
             try {
-                if ($noticias->getId() == 0)
-                    $this->noticiasDAO->insert($noticias);
+                if ($id == 0)
+                    $this->noticiasDAO->insert($noticia);
                 else
-                    $this->noticiasDAO->update($noticias);
+                    $this->noticiasDAO->update($noticia);
 
                 header("location: " . BASEURL . "/controller/NoticiasController.php?action=list");
                 exit;
             } catch (PDOException $e) {
-                //Iserir erro no array
-                array_push($erros, "Erro ao gravar no banco de dados!");
-                array_push($erros, $e->getMessage());
+                $erros[] = "Erro ao gravar no banco!";
+                $erros[] = $e->getMessage();
             }
         }
 
-        //Mostrar os erros
-        $dados['id'] = $noticias->getId();
+        $dados['id'] = $id;
+        $dados["noticia"] = $noticia;
         $dados['pontos'] = $this->pontoDAO->list();
-        $dados["noticias"] = $noticias;
 
         $msgErro = implode("<br>", $erros);
 
         $this->loadView("noticias/form.php", $dados, $msgErro);
     }
 
-    protected function delete()
-    {
-        //Busca a noticia na base pelo ID    
+    protected function delete() {
+
         $id = $_GET["id"];
-        
-        //Busca a noticia na base pelo ID    
-        $noticias = $this->noticiasDAO->findById($id);
+        $noticia = $this->noticiasDAO->findById($id);
 
-        if ($noticias) {
-            //Excluir
-            $this->noticiasDAO->deleteById($noticias->getId());
-
+        if ($noticia) {
+            $this->noticiasDAO->deleteById($id);
             header("location: " . BASEURL . "/controller/NoticiasController.php?action=list");
             exit;
         } else {
-            $this->list("Noticia não encontrada!");
+            $this->list("Notícia não encontrada!");
         }
     }
-
-
 }
 
-//Criar o objeto do controller
 new NoticiasController();

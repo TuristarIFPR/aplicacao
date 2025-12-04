@@ -1,51 +1,132 @@
-<?php
-#Nome do arquivo: login/login.php
-#Objetivo: interface para logar no sistema
+<?php require_once(__DIR__ . "/../include/header.php"); ?>
 
-require_once(__DIR__ . "/../include/header.php");
-?>
+<style>
+/* ===========================================================
+   ESTILO GLOBAL
+   =========================================================== */
 
-<div class="container">
-    <div class="row" style="margin-top: 20px;">
-        <div class="col-6">
-            <div class="alert alert-info">
-                <h4>Informe os dados para logar:</h4>
-                <br>
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #d8dce3ff;
+    margin: 0;
+}
 
-                <!-- Formulário de login -->
-                <form id="frmLogin" action="./LoginController.php?action=logon" method="POST" >
-                    <div class="mb-3">
-                        <label class="form-label" for="txtEmail">Email:</label>
-                        <input type="text" class="form-control" name="email" id="txtEmail"
-                            maxlength="100" placeholder="Informe o email"
-                            value="<?php echo isset($dados['email']) ? $dados['email'] : '' ?>" />        
-                    </div>
+/* Títulos principais */
+h1, h2, h3, h4 {
+    font-weight: 600;
+    color: #000000ff;
+}
 
-                    <div class="mb-3">
-                        <label class="form-label" for="txtSenha">Senha:</label>
-                        <input type="password" class="form-control" name="senha" id="txtSenha"
-                            maxlength="15" placeholder="Informe a senha"
-                            value="<?php echo isset($dados['senha']) ? $dados['senha'] : '' ?>" />        
-                    </div>
+p, span, label {
+    font-size: 16px;
+    color: #000000ff;
+}
 
-                    <button type="submit" class="btn btn-success mt-3">Logar</button>
-                </form>
-            </div>
-        </div>
+/* Espaçamento padrão para páginas */
+.container {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
 
-        <div class="col-6">
-            <?php include_once(__DIR__ . "/../include/msg.php") ?>
-        </div>
-    </div>
+/* ===========================================================
+   HERO PADRÃO
+   =========================================================== */
 
-    <div class="row" style="margin-top: 20px;">
-        <div class="col-6">
-            <span>Não possui cadastro?</span><a href="./CadastroController.php?action=cadastro">Clique aqui</a>
+.hero-padrao {
+    background: linear-gradient(
+        rgba(0,0,0,0.45),
+        rgba(0,0,0,0.45)
+    ),
+    url('../img/travel/home.jpg') center/cover no-repeat;
+    padding: 110px 0;
+    color: #000000ff;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.hero-padrao h1 {
+    font-size: 38px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+/* ===========================================================
+   CARDS
+   =========================================================== */
+
+.card {
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+/* ===========================================================
+   FORMULÁRIOS
+   =========================================================== */
+
+.form-control {
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #000000ff;
+}
+
+.form-control:focus {
+    border-color: #272642ff;
+    box-shadow: 0 0 0 0.2rem rgba(22, 7, 71, 0.25);
+}
+
+.form-label {
+    font-weight: 500;
+    color: #333;
+}
+
+/* ===========================================================
+   BOTÕES
+   =========================================================== */
+
+.btn {
+    border-radius: 10px !important;
+    padding: 10px 20px;
+    font-size: 16px;
+    transition: 0.2s;
+}
+
+.btn-success {
+    background-color: #272642ff;
+    border-color: #272642ff;
+    color: white;
+}
+
+.btn-success:hover {
+    background-color: #272642ff;
+}
+</style>
+<div class="container d-flex justify-content-center">
+    <div class="col-6 mt-5">
+
+        <div class="card p-4 shadow-sm">
+
+            <h3 class="text-center mb-4">Acesse sua conta</h3>
+
+            <form action="./LoginController.php?action=logon" method="POST">
+
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Email:</label>
+                    <input type="text" class="form-control" name="email" placeholder="Seu email">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Senha:</label>
+                    <input type="password" class="form-control" name="senha" placeholder="Sua senha">
+                </div>
+
+                <button type="submit" class="btn btn-success w-100 mt-2">Entrar</button>
+
+            </form>
+
         </div>
 
     </div>
 </div>
 
-<?php  
-require_once(__DIR__ . "/../include/footer.php");
-?>
+<?php require_once(__DIR__ . "/../include/footer.php"); ?>

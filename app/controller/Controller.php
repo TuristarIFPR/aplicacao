@@ -30,18 +30,24 @@ class Controller {
     }
 
     protected function loadView(string $path, array $dados = [], string $msgErro = "", string $msgSucesso = "") {
-        
-        $caminho = __DIR__ . "/../view/" . $path;
-        //echo $caminho;
-        if(file_exists($caminho)) {
-            //Inclui e exibe a view a partir do controller
-            require $caminho;
 
-        } else {
-            echo "Erro ao carrega a view solicitada<br>";
-            echo "Caminho: " . $caminho;
+    $caminho = __DIR__ . "/../view/" . $path;
+
+    if(file_exists($caminho)) {
+
+        // Torna cada chave do array $dados uma variável disponível na view
+        if (!empty($dados)) {
+            extract($dados);
         }
+
+        require $caminho;
+
+    } else {
+        echo "Erro ao carregar a view solicitada<br>";
+        echo "Caminho: " . $caminho;
     }
+}
+
 
     protected function usuarioEstaLogado() {
         session_start();

@@ -23,8 +23,6 @@ class PontoTuristicoController extends Controller
         if (! $this->usuarioEstaLogado())
             return;
 
-        //TODO - Verificar se o usuário logado é ADMIN
-
 
         $this->pontoDAO = new PontoDAO();
         $this->pontoService = new PontoService();

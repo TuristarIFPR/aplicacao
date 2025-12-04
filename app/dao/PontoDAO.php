@@ -1,3 +1,4 @@
+
 <?php
 #Nome do arquivo: PontoDAO.php
 #Objetivo: classe DAO para o model de Ponto turistico

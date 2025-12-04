@@ -9,7 +9,7 @@
   <meta name="keywords" content="">
 
   <!-- Favicons -->
-  <link href="<?= BASE_URL_VISITANTE ?>/assets/img/favicon.png" rel="icon">
+  <!--<link href="<?= BASE_URL_VISITANTE ?>/assets/img/favicon.png" rel="icon"> logo do turistar--> 
   <link href="<?= BASE_URL_VISITANTE ?>/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Fonts -->
@@ -27,13 +27,6 @@
   <!-- Main CSS File -->
   <link href="<?= BASE_URL_VISITANTE ?>/assets/css/main.css" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: Tour
-  * Template URL: https://bootstrapmade.com/tour-bootstrap-travel-website-template/
-  * Updated: Jul 01 2025 with Bootstrap v5.3.7
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body class="index-page">

@@ -12,18 +12,20 @@ define('DB_NAME', 'turistar');
 define('DB_USER', 'root');
 define('DB_PASSWORD', 'bancodedados');
 
-//Deve ter o nome da pasta do projeto no servidor APACHE
+// Caminho base para controllers e administrador
 define('BASEURL', '/turistar/aplicacao/app');
+
+// Caminho para as páginas do visitante
 define('BASE_URL_VISITANTE', '/turistar/aplicacao/app/view/area_visitante');
 
+// Caminho correto da pasta de imagens pública (FORA do app)
+define('BASE_URL_PUBLICA', '/turistar/publica');
 
 //Nome do sistema
 define('APP_NAME', 'Template do Projeto Integrador');
 
-//Página de logout do sistema
+//Página de login e logout
 define('LOGIN_PAGE', BASEURL . '/controller/LoginController.php?action=login');
-
-//Página de login do sistema
 define('LOGOUT_PAGE', BASEURL . '/controller/LoginController.php?action=logout');
 
 //Página home do sistema
@@ -37,5 +39,3 @@ define('SESSAO_USUARIO_PAPEL', "usuarioLogadoPapel");
 //Arquivos
 define('PATH_ARQUIVOS', __DIR__ . "/../../arquivos");
 define('BASEURL_ARQUIVOS', BASEURL . "/../arquivos");
-
-

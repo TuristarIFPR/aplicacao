@@ -54,7 +54,7 @@ class LoginController extends Controller {
     protected function logout() {
         $this->loginService->removerUsuarioSessao();
 
-        $this->loadView("login/login.php", [], "", "Usuário deslogado com suscesso!");
+        $this->loadView("area_visitante/index.php", [], "", "Usuário deslogado com suscesso!");
     }
 
 }
